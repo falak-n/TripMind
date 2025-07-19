@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { IoIosSend } from "react-icons/io";
-import GlobalAPI from '@/service/GlobalAPI';
+import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi'
+
+
+
 
 function InfoSection({ tripInfo }) {
-  const [photoUrl, setPhotoUrl] = useState('/placeholder.jpg');
+  const [photoUrl, setPhotoUrl] = useState();
 
-  const handlePhotoFetched = (url) => {
-    setPhotoUrl(url);
-  };
+    useEffect(() => {
+        tripInfo && GetPlacePhoto();
+    }, [tripInfo])
 
+    const GetPlacePhoto = async () => {
+        // const data = {
+        //     textQuery:tripInfo?.userSelection?.location?.label
+        // }
+
+                const data = {
+          textQuery: tripInfo?.tripData?.destination
+        }
+        const result = await GetPlaceDetails(data).then(resp => {
+            console.log(resp.data.places[0].photos[3].name)
+            const PhotoUrl = PHOTO_REF_URL.replace('{NAME}', resp.data.places[0].photos[3].name)
+            setPhotoUrl(PhotoUrl)
+        })
+    }
+ 
   return (
     <div>
-      <GlobalAPI
+      {/* <GlobalAPI
         name={tripInfo?.tripData?.destination + ', best tourist spots hd photos'}
         address={tripInfo?.tripData?.destination}
         onPhotoFetched={handlePhotoFetched}
-      />
+      /> */}
       <img src={photoUrl} alt="Destination" className='h-[340px] w-full object-cover rounded' />
       <div className='flex justify-between items-baseline'>
         <div className='my-5 flex flex-col gap-2'>

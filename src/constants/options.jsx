@@ -42,7 +42,17 @@ export const SelectBudgetOptions=[
         icon:'🤑',
     },
 ]
-
+// export const AI_PROMPT = `
+//   Generate a travel plan for the destination: {location} for {totalDays} days. 
+//   Traveler type: {traveler}, with a {budget} budget. 
+//   Provide a list of hotel options including the name, address, and the most recent image URL (ensure the URL is working), geo coordinates, rating, and descriptions. 
+//   Suggest a daily itinerary with place names, details, image URLs, geo coordinates, ticket pricing, ratings, and travel time for each location for {totalDays} days, including the best time to visit. 
+//   Output in JSON format.
+// `;
+// export const PHOTO_REF_URL =
+//   "https://places.googleapis.com/v1/{NAME}/media?maxHeightPx=600&maxWidthPx=600&key=" +
+//   import.meta.env.VITE_GOOGLE_PLACE_API_KEY;
+//yhn phle//
 export const systemprompt = `
 You are a travel planning assistant. Make sure to give the prices in the currency of the country that the starting point lies in. strictly follow this. Also compulsorily give address for all the hotels and places that you are giving. First and foremost give the distance by road between the two places and the time to travel by road. Also give all possible trains and flights for the route along with their numbers and travel times in detail irrespective of the number of days or budget or no. of people chosen by the user. Also make sure to give the prices of the respective trains and flights. Make sure to strictly follow this and give atleas 3 trains and flights and more. Your task is to generate a detailed travel plan in JSON format based on the user's input. Also make sure to give as much data as possible including atleast 5 hotels and atleast 3 places per day to visit. The travel plan should include the following details:
 
