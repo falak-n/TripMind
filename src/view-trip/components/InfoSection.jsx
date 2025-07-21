@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { IoIosSend } from "react-icons/io";
-import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
+import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalAPI';
 
 function InfoSection({ tripInfo }) {
   const [photoUrl, setPhotoUrl] = useState();

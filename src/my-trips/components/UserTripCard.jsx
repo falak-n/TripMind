@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
+import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalAPI';
 import { Link } from 'react-router-dom';
 
 function UserTripCard({ trip }) {
