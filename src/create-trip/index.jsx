@@ -13,7 +13,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios';
 import { doc, setDoc } from "firebase/firestore";
-import { db } from '@/service/firebaseconfig';
+import { db } from '@/service/firebaseConfig';
 import { useNavigate, useNavigation } from 'react-router-dom';
 import {
   Dialog,
