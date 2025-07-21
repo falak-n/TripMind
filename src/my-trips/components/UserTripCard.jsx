@@ -1,65 +1,6 @@
-// import { useState,useEffect, React } from 'react';
-// //import GlobalAPI from '@/service/GlobalAPI';
-// import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
-// import { Link } from 'react-router';
-
-// function UserTripCard({ trip }) {
-//     //const [photoUrl, setPhotoUrl] = useState(null);
-//     const [loading, setLoading] = useState(true);
-
-//     // const handlePhotoFetched = (url) => {
-//     //     setPhotoUrl(url);
-//     //     setLoading(false);
-//     // };
-
-//     const [photoUrl, setPhotoUrl] = useState();
-    
-//       useEffect(() => {
-//         trip && GetPlacePhoto();
-//       }, [trip])
-    
-//       const GetPlacePhoto = async () => {
-//         const data = {
-//           textQuery: trip?.userSelection?.location?.label
-//         }
-//         const result = await GetPlaceDetails(data).then(resp => {
-//           // console.log(resp.data.places[0].photos[3].name)
-//           const PhotoUrl = PHOTO_REF_URL.replace('{NAME}', resp.data.places[0].photos[3].name)
-//           setPhotoUrl(PhotoUrl)
-//         })
-//       }
-//     return (
-//         <Link to={`/view-trip/${trip?.id}`}>
-//         <div className='hover:scale-105 transition-all hover:shadow-md'>
-
-//             {/* <GlobalAPI
-//                 name={trip.tripData.destination}
-//                 address={trip.tripData.destination}
-//                 onPhotoFetched={handlePhotoFetched}
-//             /> */}
-
-//             <div className="relative">
-//                 {!loading && photoUrl && (
-//                     <img src={photoUrl} alt={trip.tripData.destination} className="rounded-xl w-full h-[200px] object-cover" />
-//                 )}
-//             </div>
-
-//             <div>
-//                 <h2 className='font-bold text-lg text-black'>{trip?.tripData.destination}</h2>
-//                 <h2 className='text-sm text-gray-500'>{trip?.userSelection.days} day {trip?.userSelection.budget} budget trip with {trip?.userSelection.companions}</h2>
-//             </div>
-//         </div>
-//         </Link>
-//     )
-// }
-
-// export default UserTripCard
-
-
-
 import { useState, useEffect } from 'react';
 import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
-import { Link } from 'react-router-dom'; // use 'react-router-dom', not 'react-router'
+import { Link } from 'react-router-dom';
 
 function UserTripCard({ trip }) {
   const [photoUrl, setPhotoUrl] = useState(null);
@@ -101,25 +42,30 @@ function UserTripCard({ trip }) {
 
   return (
     <Link to={`/view-trip/${trip?.id}`}>
-      <div className="hover:scale-105 transition-all hover:shadow-md">
-        <div className="relative">
-          {!loading && photoUrl && (
+      <div className="relative overflow-hidden border border-white/30 rounded-2xl p-4 backdrop-blur-md shadow-xl transition-transform hover:scale-[1.03] w-full h-[53vh] bg-white/10">
+        {/* Image Section */}
+        <div className="relative h-[200px] overflow-hidden rounded-xl">
+          {!loading && photoUrl ? (
             <img
               src={photoUrl}
               alt={trip?.tripData?.destination || 'Trip Image'}
-              className="rounded-xl w-full h-[200px] object-cover"
+              className="w-full h-full object-cover rounded-xl border border-white/20"
             />
+          ) : (
+            <div className="w-full h-full bg-gray-300 rounded-xl animate-pulse" />
           )}
         </div>
 
-        <div>
-          <h2 className="font-bold text-lg text-black">
+        {/* Trip Details */}
+        <div className="mt-4 text-center text-black">
+          <h2 className="text-xl font-semibold mb-2 drop-shadow">
             {trip?.tripData?.destination || 'Unknown Destination'}
           </h2>
-          <h2 className="text-sm text-gray-500">
-            {trip?.userSelection?.days} day {trip?.userSelection?.budget} budget trip with{' '}
-            {trip?.userSelection?.companions}
-          </h2>
+          <p className="text-sm leading-relaxed text-gray-600">
+            {trip?.userSelection?.days} day <br />
+            {trip?.userSelection?.budget} budget trip <br />
+            with {trip?.userSelection?.companions}
+          </p>
         </div>
       </div>
     </Link>

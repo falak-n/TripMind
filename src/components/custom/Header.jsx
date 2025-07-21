@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Dialog, DialogContent, DialogDescription, DialogHeader ,DialogTitle} from "@/components/ui/dialog";
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import './Navbar.css';
 
 function Header() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -18,7 +19,7 @@ function Header() {
     },
     onError: (error) => console.log(error)
   });
-
+  
   const getUserProfile = (tokenInfo) => {
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
       {
@@ -40,20 +41,22 @@ function Header() {
   }, []);
 
   return (
-    <div className='p-3 shadow-sm flex justify-between items-center px-6 bg-transparent'>
-      <img src="/logo.svg" alt="Logo" />
+    <div className='Nav-body p-3 shadow-sm flex justify-between items-center px-6 bg-transparent'>
+      {/* <img src="/logo.svg" alt="Logo" /> */}
+      <h1>TripMind</h1>
+      
       <div>
         {user ?
           <div className='flex items-center gap-3'>
             <a href='/create-trip'>
-              <Button variant="outline" className="rounded-full">+ Create trip</Button>
+              <Button variant="outline" className="rounded-full bg-transparent text-white">+ Create trip</Button>
             </a>
             <a href='/my-trips'>
-              <Button variant="outline" className="rounded-full">My trips</Button>
+              <Button variant="outline" className="rounded-full bg-transparent text-white">My trips</Button>
             </a>
             <Popover>
               <PopoverTrigger>
-                <img src={user?.picture} className='h-[35px] w-[35px] rounded-full' alt="Profile" />
+                <img src={user?.picture} className='h-[35px] w-[35px] rounded-full ' alt="Profile" />
               </PopoverTrigger>
               <PopoverContent>
                 <h2 className='cursor-pointer' onClick={() => {
@@ -64,7 +67,7 @@ function Header() {
               </PopoverContent>
             </Popover>
           </div> :
-          <Button onClick={() => setOpenDialog(true)}>Sign In</Button>
+          <Button  className='bg-transparent text-white border border-white' onClick={() => setOpenDialog(true)}>Sign In</Button>
         }
       </div>
             <Dialog open={openDialog}>
@@ -76,7 +79,7 @@ function Header() {
                   <h2 className='font-bold text-lg mt-7'>Sign in with Google</h2>
                   <p className='mt-1'>Securely sign in with Google account</p>
                   <Button onClick={login} className='w-full mt-5 flex gap-4 items-center'>
-                    <FcGoogle className='h-7 w-7 flex' />Sign In with Google
+                    <FcGoogle className='h-7 w-7 flex'/>Sign In with Google
                   </Button>
                 </DialogDescription>
               </DialogHeader>

@@ -181,7 +181,7 @@ function CreateTrip() {
   };
 
   return (
-    <div className='max-w-4xl mx-auto px-5 mt-10'>
+    <div className=' w-screen h-full px-5 pt-[5%]'>
       <Toaster
         toastOptions={{
           style: {
@@ -192,14 +192,14 @@ function CreateTrip() {
           },
         }}
       />
-      <h2 className='font-bold text-3xl text-center'>Tell us your travel preferences 🏕️🌴🌊</h2>
+      <h2 className='font-bold text-4xl text-center'>Tell us your travel preferences 🏕️🌴🌊</h2>
       <p className='mt-3 text-gray-500 text-xl text-center'>
         Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
       </p>
-
-      {/* STARTING POINT */}
-      <div className='mt-20'>
-        <div>
+      <div className="location flex justify-evenly pl-[3%]">
+          {/* STARTING POINT */}
+               <div className='mt-20  p-[2%] pr-[3%] pl-[3%]   shadow-black shadow-sm inset-ring-slate-400 rounded-lg'>
+         <div>
           <h2 className='text-xl my-3 font-medium'>Where are you starting at? 🏡</h2>
                  <GooglePlacesAutocomplete
                       apiKey={import.meta.env.VITE_GOOGLE_PLACE_API_KEY}
@@ -216,10 +216,11 @@ function CreateTrip() {
            
 
         </div>
-      </div>
+               </div>
 
-      {/* DESTINATION */}
-      <div className='mt-20'>
+
+             {/* DESTINATION */}
+            <div className='mt-20 rounded-lg shadow-black shadow-sm inset-ring-slate-400rounded-lg p-[2%]'>
         <div>
           <h2 className='text-xl my-3 font-medium'>What is your destination of choice? 📍</h2>
             <GooglePlacesAutocomplete
@@ -238,10 +239,12 @@ function CreateTrip() {
              
 
         </div>
-      </div>
+            </div>
 
+
+      
       {/* DAYS */}
-      <div className='mt-20'>
+            <div className='mt-20  shadow-black shadow-sm inset-ring-slate-400 rounded-lg p-[1%] pt-[2%]'>
         <h2 className='text-xl my-3 font-medium'>How many days are you planning to stay?</h2>
         <Input
           placeholder={'Ex. 3 days'}
@@ -249,17 +252,22 @@ function CreateTrip() {
           value={formData.days}
           onChange={(e) => handleInputChange('days', e.target.value)}
         />
+            </div>
+
+
       </div>
+    
+    
 
       {/* BUDGET */}
-      <div className='mt-20'>
-        <h2 className='text-xl my-3 font-medium'>What is your budget?</h2>
+      <div className='mt-[3%] p-[5%] '>
+        <h2 className='text-xl my-3 font-medium text-center'>What is your budget?</h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5'>
           {SelectBudgetOptions.map((item, index) => (
             <div
               key={index}
               onClick={() => handleInputChange('budget', item.title)}
-              className={`cursor-pointer p-4 border rounded-lg hover:shadow-lg transition-all
+              className={`cursor-pointer shadow-black shadow-sm inset-ring-slate-400 p-4 border rounded-lg hover:shadow-lg transition-all
                 ${formData.budget === item.title
                 ? 'border-pink-300 shadow-lg shadow-pink-200/50 bg-pink-50'
                 : 'border-gray-200'
@@ -275,14 +283,14 @@ function CreateTrip() {
       </div>
 
       {/* COMPANIONS */}
-      <div className='mt-20'>
-        <h2 className='text-xl my-3 font-medium'>Who are you planning to go with on your next trip?</h2>
+      <div className='mt-[3%] p-[5%]'>
+        <h2 className='text-xl my-3 text-center font-medium'>Who are you planning to go with on your next trip?</h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-5'>
           {SelectTravelList.map((item, index) => (
             <div
               key={index}
               onClick={() => handleInputChange('companions', item.title)}
-              className={`cursor-pointer p-4 border rounded-lg hover:shadow-lg transition-all
+              className={`cursor-pointer p-4 border  shadow-black shadow-sm inset-ring-slate-400 rounded-lg hover:shadow-lg transition-all
                 ${formData.companions === item.title
                 ? 'border-pink-300 shadow-lg shadow-pink-200/50 bg-pink-50'
                 : 'border-gray-200'
@@ -299,8 +307,8 @@ function CreateTrip() {
       </div>
 
       {/* GENERATE BUTTON */}
-      <div className='mt-20 flex justify-end'>
-        <Button className='w-full md:w-auto' onClick={onGenerateTrip}>
+      <div className='mt-[1%] mb-[3%] flex justify-center'>
+        <Button className='w- md:w-auto' onClick={onGenerateTrip}>
           {loading ?
             <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin' /> : 'Generate Trip'
           }

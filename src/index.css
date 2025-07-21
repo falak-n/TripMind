@@ -142,3 +142,52 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* background video css */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen */
+  overflow: hidden;
+}
+
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  top: 40%;
+  transform: translateY(-50%);
+}
+.typewriter p {
+  overflow: hidden;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  animation: typing 6s steps(80) infinite, blink 0.75s step-end infinite;
+  width: fit-content;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+.headline{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
