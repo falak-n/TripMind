@@ -1,7 +1,7 @@
 import { collection, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from 'react-router';
-import { db } from '@/service/firebaseconfig';
+import { db } from '@/service/firebaseConfig';
 import { getDocs } from 'firebase/firestore';
 import UserTripCard from './components/UserTripCard';
 
